@@ -51,8 +51,8 @@ public class TeaShop implements shop {
     }
 
 
-    public void soldMilkTea(MilkTea milktea, Calendar date) throws SoldOutException{
-        for(int i=0;i<bubblesList.size();i++){//先删除过期的配料
+     public void soldMilkTea(MilkTea milktea, Calendar date) throws SoldOutException{
+        for(int i=0;i<bubblesList.size();){//先删除过期的配料
             Bubble bubble=bubblesList.get(i);
             Calendar date_=bubble.getDate();
             if(date.getTimeInMillis()-date_.getTimeInMillis()>bubble.getExDate()*24*3600){
@@ -62,7 +62,7 @@ public class TeaShop implements shop {
                 break;
             }
         }
-        for(int i=0;i<cocountsList.size();i++){
+        for(int i=0;i<cocountsList.size();){
             Cocount cocount=cocountsList.get(i);
             Calendar date_=cocount.getDate();
             if(date.getTimeInMillis()-date_.getTimeInMillis()>cocount.getExDate()*24*3600){
@@ -75,7 +75,7 @@ public class TeaShop implements shop {
 
 
         Ingredient Ingre=milktea.getIngredients();
-        if(Ingre.toString().equals("bubble")){
+        if(Ingre.toString().equals("cubble")){
             if(bubblesList.size()>=1){
                 bubblesList.remove(0);
             }
